@@ -1,0 +1,69 @@
+﻿<Window
+    x:Class="RoadPicker.GuideWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvt="clr-namespace:RoadPicker.converters"  
+
+    Title="Notification Popup" Width="270" SizeToContent="Height"
+  WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" MouseMove="Window_MouseMove">
+    <Window.Resources>
+        <cvt:ColorToBrushConverter x:Key="colorToBrush"></cvt:ColorToBrushConverter>
+    </Window.Resources>
+    <Grid RenderTransformOrigin="0,1" >
+
+        <!-- Notification area -->
+        <Border BorderThickness="5" Background="Beige" BorderBrush="Black" CornerRadius="20,0,0,0">
+            <StackPanel Margin="4">
+                <TextBlock FontSize="15" TextWrapping="Wrap" >
+                    <Bold>Guide</Bold><LineBreak />    
+                    - F5 for toggle desktop/this_app
+                     <LineBreak /> - Click 1st time for start point
+                    <LineBreak/>- Click 2nd time for end point
+                        <LineBreak /> - F6 to start search
+                         <LineBreak /> - F7 to start over
+                    
+                  
+
+                     <LineBreak /> - +/-/Scroll to change Step length
+                    <LineBreak></LineBreak>
+                    <Slider x:Name="slider" Width="200" Value="{Binding StepMultiplier}" Minimum="0.1" Maximum="1"></Slider>
+                      <TextBlock Text="{Binding ElementName=slider, Path=Value}"></TextBlock>
+                    <LineBreak /> - F8 to add 
+                   <Border BorderThickness="1" BorderBrush="Black">
+                    <Canvas Background="{Binding hoverColor, Converter={StaticResource colorToBrush}}" Width="50" Height="15"></Canvas>
+                   </Border>
+                        as road color
+                  
+                    <LineBreak/>
+                    
+                    - Added colors:  <WrapPanel  Orientation="Horizontal" x:Name="addedColors" ></WrapPanel>
+                    <LineBreak /> - F9 to exit app
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <!-- Animation 
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers> -->
+
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleY="1" />
+        </Grid.RenderTransform>
+
+    </Grid>
+
+</Window>

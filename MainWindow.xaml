@@ -1,0 +1,40 @@
+﻿<Window x:Class="RoadPicker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoadPicker"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="350" MinWidth="525"
+        WindowStyle="None" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Minimized"
+         AllowsTransparency="True" StateChanged="Window_StateChanged"
+        Topmost="False" MouseWheel="Window_MouseWheel">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.0" Color="White"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Image  x:Name="image" Stretch="Fill"  Grid.Row="0" Grid.Column="0" MouseDown="Image_MouseDown" MouseMove="image_MouseMove" MouseUp="image_MouseUp">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Opacity" Value="1" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Canvas x:Name="canvas" IsHitTestVisible="False"  Width="{Binding ElementName=image, Path=ActualWidth}" Height="{Binding ElementName=image, Path=ActualHeight}" Grid.Column="0" ></Canvas>
+        <Canvas x:Name="canvasWalls" IsHitTestVisible="False"  Width="{Binding ElementName=image, Path=ActualWidth}" Height="{Binding ElementName=image, Path=ActualHeight}" Grid.Column="0" ></Canvas>
+
+    </Grid>
+</Window>
